@@ -40,8 +40,9 @@ class SMS:
         return ET.fromstring(result.text)
 
     def set_filters_action_set(self, profile_name, filter_number, action_set):
-         xml = set_filters_request(profile_name, filter_number, action_set)
-         self.set_filter(xml)
+        xml = set_filters_request(profile_name, filter_number, action_set)
+        print("SET FILTERS_REQUEST XML", xml)
+        self.set_filter(xml)
 
 
 def get_filters_request(profile_name, name, value):
@@ -61,7 +62,6 @@ def set_filters_request(profile_name, filter_number, action_set):
     ET.SubElement(filter_element, 'number').text = str(filter_number)
     ET.SubElement(filter_element, 'actionset', {'name': action_set})
     xml = ET.tostring(get_filters_element)
-    print(xml)
     return xml
 
 """

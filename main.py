@@ -32,8 +32,8 @@ def main():
     for action_from, action_to in settings.profile.action_sets:
         if action_from == actionset_name:
             print("change to", action_to)
-            sms.set_filters_action_set(settings.profile.name, n, action_to)
-
+            result = sms.set_filters_action_set(settings.profile.name, n, action_to)
+            print(result)
 
 if __name__ == '__main__':
     main()

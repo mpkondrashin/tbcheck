@@ -25,7 +25,7 @@ class SMS:
         url = f"https://{self.url}/ipsProfileMgmt/getFilters"
         xml = get_filters_request(profile_name, name, value)
         files = {'file': ('getFilters.xml', xml)}
-        result = requests.post(url, files=files, headers=headers, verify=self.insecure_skip_verify)
+        result = requests.post(url, files=files, headers=headers, verify=not self.insecure_skip_verify)
         return result.text
 
 

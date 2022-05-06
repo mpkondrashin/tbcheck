@@ -58,7 +58,7 @@ def main():
                 #print(result)
                 break
         else:
-            #print('Action Set not found:', actionset_name)
+            print(filter_name.text,  actionset_name)
             pass
 
 

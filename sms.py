@@ -45,8 +45,15 @@ class SMS:
         print("SET FILTERS_REQUEST XML", xml)
         return self.set_filter(xml)
 
-    def dbAccess(self):
-        pass
+    def action_set_refid(self, action_set_name):
+        headers = {'X-SMS-API-KEY': self.api_key}
+        url = f"https://{self.url}/dbAccess/tptDBServlet?method=DataDictionary&table=ACTIONSET&format=xml"
+        result = requests.get(url, headers=headers, verify=not self.insecure_skip_verify)
+        print(result.text)
+        root = ET.fromstring(result.text)
+        for row in root.findall('r'):
+            print(row[0])
+
 
 def get_filters_request(profile_name, name, value):
     if name not in ("number", "signature-id", "policy-id", "name"):
@@ -58,13 +65,13 @@ def get_filters_request(profile_name, name, value):
     xml = ET.tostring(get_filters_element)
     return xml
 
-def set_filters_request(profile_name, filter_number, action_set):
+def set_filters_request(profile_name, filter_number, action_set_refid):
     get_filters_element = ET.Element('setFilters')
     ET.SubElement(get_filters_element, 'profile', attrib=dict(name=profile_name))
     filter_element = ET.SubElement(get_filters_element, 'filter')
     ET.SubElement(filter_element, 'number').text = str(filter_number)
     #ET.SubElement(filter_element, 'actionset', {'name': action_set})
-    ET.SubElement(filter_element, 'actionset', {'refid': '124d43ff-d62d-4764-8280-9931bf9a9049'})
+    ET.SubElement(filter_element, 'actionset', {'refid': action_set_refid})
     xml = ET.tostring(get_filters_element)
     return xml
 

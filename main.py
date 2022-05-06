@@ -45,7 +45,7 @@ def main():
             #print(result)
             #continue
             pass
-        actionset_name_element = action_name.attrib['name']\
+        actionset_name_element = action_name.attrib['name']
         if actionset_name_element is None:
             continue
         actionset_name = actionset_name_element.replace('/', '+')

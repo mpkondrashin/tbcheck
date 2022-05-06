@@ -1,6 +1,8 @@
 import requests
+import urllib3
 import xml.etree.cElementTree as ET
 
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 defaultUserAgent = 'TBCheck/0.1'
 

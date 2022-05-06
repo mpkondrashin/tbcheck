@@ -1,9 +1,21 @@
 
+
 class settings:
+
     class sms:
         url = '192.168.184.102'
         api_key = '12345-1234-123-123'
         skip_tls_verify = True
+
+    class profile:
+        name = 'tbcheck'
+
+        action_sets = {
+            ("Block", "TBC Permit + Notify + Trace"),
+            ("Block + Notify", "TBC Permit + Notify + Trace"),
+            ("Block + Notify + Trace", "TBC Permit + Notify + Trace"),
+        }
+
 """
 from dynaconf import Dynaconf, Validator
 

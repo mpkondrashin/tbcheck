@@ -20,7 +20,7 @@ def main():
     count_missing = 0
     #for n in range(1, 100000):
     n = 51
-    result = sms.get_filter('test', 'number', n)
+    result = sms.get_filter(settings.profile.name, 'number', n)
     name = result.find('filter/name')#/filter/name").text
     if name is None:
         #print(result)

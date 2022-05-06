@@ -40,16 +40,16 @@ class SMS:
         #return ET.fromstring(result.text)
         return result.text
 
-    def set_filters_action_set(self, profile_name, filter_number, action_set):
-        xml = set_filters_request(profile_name, filter_number, action_set)
-        print("SET FILTERS_REQUEST XML", xml)
+    def set_filters_action_set(self, profile_name, filter_number, refid):
+        xml = set_filters_request(profile_name, filter_number, refid)
+        # print("SET FILTERS_REQUEST XML", xml)
         return self.set_filter(xml)
 
     def action_set_refid(self, action_set_name):
         headers = {'X-SMS-API-KEY': self.api_key}
         url = f"https://{self.url}/dbAccess/tptDBServlet?method=DataDictionary&table=ACTIONSET&format=xml"
         result = requests.get(url, headers=headers, verify=not self.insecure_skip_verify)
-        print(result.text)
+        #print(result.text)
         root = ET.fromstring(result.text)
         action_sets = root.find('table/data')
         for row in action_sets.findall('r'):

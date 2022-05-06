@@ -4,8 +4,22 @@
 # TBCheck (c) 2022 by Michael Kondrashin (mkondrashin@gmail.com)
 #
 
+import sys
+
 from config import settings
 from sms import SMS
+
+
+def get_refids(sms):
+    # [item for sublist in a for item in sublist]
+    action_sets = set([item for item in [each for each in settings.profile.action_sets]])
+    result = dict()
+    for action in action_sets:
+        action_set_refid = sms.action_set_refid(action)
+        if action_set_refid == None:
+            sys.exit(1)
+        result[action] = action_set_refid
+    return result
 
 
 def main():
@@ -17,10 +31,8 @@ def main():
     print(settings.sms.url)
     print(settings.sms.skip_tls_verify)
     sms = SMS(settings.sms.url, settings.sms.api_key).set_insecure_skip_verify(True)
-
+    refids = get_refids(sms)
     action_set_refid = sms.action_set_refid(settings.profile.action_sets[0][1])
-    print(action_set_refid)
-    return
     count_missing = 0
     #for n in range(1, 100000):
     n = 51
@@ -36,7 +48,10 @@ def main():
     for action_from, action_to in settings.profile.action_sets:
         if action_from == actionset_name:
             print("change to", action_to)
-            result = sms.set_filters_action_set(settings.profile.name, n, action_to)
+            refid = refids[action_to]
+            result = sms.set_filters_action_set(settings.profile.name, n, refid)
+            print(result)
+
 
 if __name__ == '__main__':
     main()

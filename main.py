@@ -13,7 +13,7 @@ from sms import SMS
 def get_refids(sms):
     # [item for sublist in a for item in sublist]
     action_sets = set([item for a in settings.profile.action_sets for item in a])
-    print(action_sets)
+    #print(action_sets)
     result = dict()
     for action in action_sets:
         action_set_refid = sms.action_set_refid(action)
@@ -48,13 +48,13 @@ def main():
         if actionset_name_element is None:
             continue
         actionset_name = actionset_name_element.replace('/', '+')
-        print(filter_name.text, action_name.attrib['name'])
         for action_from, action_to in settings.profile.action_sets:
             #print('Compare', action_from, actionset_name)
             if action_from == actionset_name:
                 #print('change to', action_to)
                 refid = refids[action_to]
                 result = sms.set_filters_action_set(settings.profile.name, n, refid)
+                print(filter_name.text, action_from, "->", action_to)
                 #print(result)
                 break
         else:

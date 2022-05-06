@@ -12,7 +12,8 @@ from sms import SMS
 
 def get_refids(sms):
     # [item for sublist in a for item in sublist]
-    action_sets = set([item for item in [each for each in settings.profile.action_sets]])
+    action_sets = set([item for a in settings.profile.action_sets for item in a])
+    print(action_sets)
     result = dict()
     for action in action_sets:
         action_set_refid = sms.action_set_refid(action)

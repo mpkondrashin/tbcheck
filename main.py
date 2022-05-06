@@ -23,7 +23,7 @@ def main():
         name = result.find('filter/name')#/filter/name").text
         if name is None:
             print("Missing name")
-            return
+            continue
         print(name.text)
 
 if __name__ == '__main__':

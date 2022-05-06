@@ -18,7 +18,8 @@ def main():
     print(settings.sms.skip_tls_verify)
     sms = SMS(settings.sms.url, settings.sms.api_key).set_insecure_skip_verify(True)
     result = sms.get_filters('test', 'number', 51)
-    print(result)
+    name = result["filters"]["filter"]["name"].text
+    print(name)
 
 if __name__ == '__main__':
     main()

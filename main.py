@@ -27,7 +27,11 @@ def main():
         #print(result)
         #continue
         pass
+    actionset_name = action_name.attrib['name']
     print(filter_name.text, action_name.attrib['name'])
+    for action_from, action_to in settings.profile.action_sets:
+        if action_from == actionset_name:
+            print("change to", action_to)
 
 if __name__ == '__main__':
     main()

@@ -18,7 +18,8 @@ def main():
     print(settings.sms.skip_tls_verify)
     sms = SMS(settings.sms.url, settings.sms.api_key).set_insecure_skip_verify(True)
 
-    sms.action_set_refid(settings.profile.action_sets[0][1])
+    action_set_refid = sms.action_set_refid(settings.profile.action_sets[0][1])
+    print(action_set_refid)
     return
     count_missing = 0
     #for n in range(1, 100000):

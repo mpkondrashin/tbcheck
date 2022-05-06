@@ -53,7 +53,9 @@ class SMS:
         root = ET.fromstring(result.text)
         action_sets = root.find('table/data')
         for row in action_sets.findall('r'):
-            print(row[0].text, row[1].text)
+            if row[1].text == action_set_name:
+                return row[0].text
+        return None
 
 
 def get_filters_request(profile_name, name, value):

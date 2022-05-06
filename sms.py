@@ -22,7 +22,7 @@ class SMS:
         self.insecure_skip_verify = insecure_skip_verify
         return self
 
-    def get_filter_by_number(self, profile_name, name, value):
+    def get_filter(self, profile_name, name, value):
         headers = {'X-SMS-API-KEY': self.api_key}
         url = f"https://{self.url}/ipsProfileMgmt/getFilters"
         xml = get_filters_request(profile_name, name, value)

@@ -67,7 +67,7 @@ def get_filters_request(profile_name, name, value):
     filter_element = ET.SubElement(get_filters_element, "filter")
     ET.SubElement(filter_element, name).text = str(value)
     filter_element = ET.SubElement(get_filters_element, "filter")
-    ET.SubElement(filter_element, name).text = str(value)
+    ET.SubElement(filter_element, name).text = str(value+1)
     return ET.tostring(get_filters_element)
 
 

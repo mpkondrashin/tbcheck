@@ -10,11 +10,11 @@ class settings:
     class profile:
         name = 'tbcheck'
 
-        action_sets = {
+        action_sets = [
             ("Block", "TBC Permit / Notify / Trace"),
             ("Block / Notify", "TBC Permit / Notify / Trace"),
             ("Block / Notify / Trace", "TBC Permit / Notify / Trace"),
-        }
+        ]
 
 """
 from dynaconf import Dynaconf, Validator

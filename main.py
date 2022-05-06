@@ -21,12 +21,13 @@ def main():
     #for n in range(1, 100000):
     n = 51
     result = sms.get_filter(settings.profile.name, 'number', n)
-    name = result.find('filter/name')#/filter/name").text
-    if name is None:
+    filter_name = result.find('filter/name')#/filter/name").text
+    action_name = result.find('filter/actionset').name#/filter/name").text
+    if filter_name is None or action_name is None:
         #print(result)
         #continue
         pass
-    print(name.text)
+    print(filter_name.text, action_name.text)
 
 if __name__ == '__main__':
     main()

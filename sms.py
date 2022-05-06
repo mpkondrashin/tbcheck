@@ -28,7 +28,7 @@ class SMS:
         xml = get_filters_request(profile_name, name, value)
         files = {'file': ('getFilters.xml', xml)}
         result = requests.post(url, files=files, headers=headers, verify=not self.insecure_skip_verify)
-        print(result.text)
+        #print(result.text)
         return ET.fromstring(result.text)
 
     def set_filter(self, xml_body):
@@ -36,7 +36,7 @@ class SMS:
         url = f"https://{self.url}/ipsProfileMgmt/setFilters"
         files = {'file': ('setFilters.xml', xml_body)}
         result = requests.post(url, files=files, headers=headers, verify=not self.insecure_skip_verify)
-        print(result.text)
+        #print(result.text)
         #return ET.fromstring(result.text)
         return result.text
 

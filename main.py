@@ -29,36 +29,34 @@ def main():
         settings.sms.api_key = open('api_key.txt').read()
     except IOError as e:
         pass
-    print(settings.sms.api_key)
-    print(settings.sms.url)
-    print(settings.sms.skip_tls_verify)
+    #print(settings.sms.api_key)
+    #print(settings.sms.url)
+    #print(settings.sms.skip_tls_verify)
     sms = SMS(settings.sms.url, settings.sms.api_key).set_insecure_skip_verify(True)
     refids = get_refids(sms)
-    print(refids)
+    #print(refids)
     action_set_refid = sms.action_set_refid(settings.profile.action_sets[0][1])
     count_missing = 0
-    #for n in range(1, 100000):
-    n = 51
-    result = sms.get_filter(settings.profile.name, 'number', n)
-    filter_name = result.find('filter/name')#/filter/name").text
-    action_name = result.find('filter/actionset')
-    if filter_name is None or action_name is None:
-        #print(result)
-        #continue
-        pass
-    actionset_name = action_name.attrib['name'].replace('/', '+')
-    print(filter_name.text, action_name.attrib['name'])
-    for action_from, action_to in settings.profile.action_sets:
-        print('Compare', action_from, actionset_name)
-        if action_from == actionset_name:
-            print('change to', action_to)
-            refid = refids[action_to]
-            result = sms.set_filters_action_set(settings.profile.name, n, refid)
-            print(result)
-            break
-    else:
-        print('Action Set not found:', actionset_name)
-
+    for n in range(1, 40000):
+        result = sms.get_filter(settings.profile.name, 'number', n)
+        filter_name = result.find('filter/name')#/filter/name").text
+        action_name = result.find('filter/actionset')
+        if filter_name is None or action_name is None:
+            #print(result)
+            #continue
+            pass
+        actionset_name = action_name.attrib['name'].replace('/', '+')
+        print(filter_name.text, action_name.attrib['name'])
+        for action_from, action_to in settings.profile.action_sets:
+            #print('Compare', action_from, actionset_name)
+            if action_from == actionset_name:
+                #print('change to', action_to)
+                refid = refids[action_to]
+                result = sms.set_filters_action_set(settings.profile.name, n, refid)
+                #print(result)
+                break
+        else:
+            print('Action Set not found:', actionset_name)
 
 
 if __name__ == '__main__':

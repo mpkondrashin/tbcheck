@@ -46,8 +46,7 @@ def main():
         #print(result)
         #continue
         pass
-    action_name = action_name.replace('/', '+')
-    actionset_name = action_name.attrib['name']
+    actionset_name = action_name.attrib['name'].replace('/', '+')
     print(filter_name.text, action_name.attrib['name'])
     for action_from, action_to in settings.profile.action_sets:
         print('Compare', action_from, actionset_name)

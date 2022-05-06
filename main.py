@@ -43,7 +43,6 @@ def main():
         action_name = result.find('filter/actionset')
         if filter_name is None or action_name is None:
             #print(result)
-            #continue
             continue
         actionset_name_element = action_name.attrib['name']
         if actionset_name_element is None:
@@ -59,7 +58,8 @@ def main():
                 #print(result)
                 break
         else:
-            print('Action Set not found:', actionset_name)
+            #print('Action Set not found:', actionset_name)
+            pass
 
 
 if __name__ == '__main__':

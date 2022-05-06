@@ -31,11 +31,19 @@ class SMS:
         print(result.text)
         return ET.fromstring(result.text)
 
-    def set_filter(self, name):
-        pass
+    def set_filter(self, xml_body):
+        headers = {'X-SMS-API-KEY': self.api_key}
+        url = f"https://{self.url}/ipsProfileMgmt/setFilters"
+        files = {'file': ('setFilters.xml', xml_body)}
+        result = requests.post(url, files=files, headers=headers, verify=not self.insecure_skip_verify)
+        print(result.text)
+        return ET.fromstring(result.text)
 
+     def set_filters_action_set(self, profile_name, filter_number, action_set):
+         xml = set_filters_request(profile_name, filter_number, action_set)
+         self.set_filter(xml)
 
-        """
+    """
         s = Session()
 
         req = Request('POST', url, data=data, headers=headers)
@@ -69,6 +77,15 @@ def get_filters_request(profile_name, name, value):
     xml = ET.tostring(get_filters_element)
     return xml
 
+def set_filters_request(profile_name, filter_number, action_set):
+    get_filters_element = ET.Element('setFilters')
+    ET.SubElement(get_filters_element, 'profile', attrib=dict(name=profile_name))
+    filter_element = ET.SubElement(get_filters_element, 'filter')
+    ET.SubElement(filter_element, 'number').text = str(filter_number)
+    ET.SubElement(filter_element, 'actionset', {'name': action_set})
+    xml = ET.tostring(get_filters_element)
+    print(xml)
+    return xml
 
 """
 p = result.prepare()

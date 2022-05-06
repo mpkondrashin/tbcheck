@@ -9,6 +9,10 @@ from sms import SMS
 
 
 def main():
+    try:
+        settings.sms.api_key = open('api_key.txt').read()
+    except IOError as e:
+        pass
     print(settings.sms.api_key)
     print(settings.sms.url)
     print(settings.sms.skip_tls_verify)

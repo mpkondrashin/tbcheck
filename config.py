@@ -1,7 +1,7 @@
 
 class settings:
     class sms:
-        url = 'http://10.1.1.1'
+        url = 'http://192.168.184.102'
         api_key = '12345-1234-123-123'
         skip_tls_verify = True
 """

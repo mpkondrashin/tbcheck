@@ -55,6 +55,9 @@ def main():
             refid = refids[action_to]
             result = sms.set_filters_action_set(settings.profile.name, n, refid)
             print(result)
+            break
+    else:
+        print('Action Set not found:', actionset_name)
 
 
 

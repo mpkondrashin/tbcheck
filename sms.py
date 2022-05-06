@@ -39,32 +39,9 @@ class SMS:
         print(result.text)
         return ET.fromstring(result.text)
 
-     def set_filters_action_set(self, profile_name, filter_number, action_set):
+    def set_filters_action_set(self, profile_name, filter_number, action_set):
          xml = set_filters_request(profile_name, filter_number, action_set)
          self.set_filter(xml)
-
-    """
-        s = Session()
-
-        req = Request('POST', url, data=data, headers=headers)
-        prepped = req.prepare()
-
-        # do something with prepped.body
-        prepped.body = 'No, I want exactly this as the body.'
-
-        # do something with prepped.headers
-        del prepped.headers['Content-Type']
-
-        resp = s.send(prepped,
-                      stream=stream,
-                      verify=verify,
-                      proxies=proxies,
-                      cert=cert,
-                      timeout=timeout
-                      )
-
-        print(resp.status_code)
-        """
 
 
 def get_filters_request(profile_name, name, value):

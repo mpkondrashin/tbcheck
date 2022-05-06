@@ -46,12 +46,13 @@ def main():
         #print(result)
         #continue
         pass
+    action_name = action_name.replace('/', '+')
     actionset_name = action_name.attrib['name']
     print(filter_name.text, action_name.attrib['name'])
     for action_from, action_to in settings.profile.action_sets:
         print('Compare', action_from, actionset_name)
         if action_from == actionset_name:
-            print("change to", action_to)
+            print('change to', action_to)
             refid = refids[action_to]
             result = sms.set_filters_action_set(settings.profile.name, n, refid)
             print(result)

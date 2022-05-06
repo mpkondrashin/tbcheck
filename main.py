@@ -22,7 +22,7 @@ def main():
         result = sms.get_filters('test', 'number', n)
         name = result.find('filter/name')#/filter/name").text
         if name is None:
-            print("Missing name")
+            print(result)
             continue
         print(name.text)
 

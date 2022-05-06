@@ -42,7 +42,7 @@ class SMS:
     def set_filters_action_set(self, profile_name, filter_number, action_set):
         xml = set_filters_request(profile_name, filter_number, action_set)
         print("SET FILTERS_REQUEST XML", xml)
-        self.set_filter(xml)
+        return self.set_filter(xml)
 
 
 def get_filters_request(profile_name, name, value):

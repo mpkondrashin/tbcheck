@@ -28,6 +28,7 @@ class SMS:
         xml = get_filters_request(profile_name, name, value)
         files = {'file': ('getFilters.xml', xml)}
         result = requests.post(url, files=files, headers=headers, verify=not self.insecure_skip_verify)
+        print(result.text)
         return ET.fromstring(result.text)
 
 

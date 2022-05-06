@@ -51,7 +51,8 @@ class SMS:
         result = requests.get(url, headers=headers, verify=not self.insecure_skip_verify)
         print(result.text)
         root = ET.fromstring(result.text)
-        for row in root.findall('r'):
+        action_sets = root.find('table/data')
+        for row in action_sets.findall('r'):
             print(row[0])
 
 

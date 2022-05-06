@@ -45,6 +45,8 @@ class SMS:
         print("SET FILTERS_REQUEST XML", xml)
         return self.set_filter(xml)
 
+    def dbAccess(self):
+        pass
 
 def get_filters_request(profile_name, name, value):
     if name not in ("number", "signature-id", "policy-id", "name"):

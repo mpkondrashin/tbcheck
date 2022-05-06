@@ -17,6 +17,7 @@ def get_refids(sms):
     for action in action_sets:
         action_set_refid = sms.action_set_refid(action)
         if action_set_refid == None:
+            print("action not found: ", action)
             sys.exit(1)
         result[action] = action_set_refid
     return result

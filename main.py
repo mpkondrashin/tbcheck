@@ -19,7 +19,10 @@ def main():
     sms = SMS(settings.sms.url, settings.sms.api_key).set_insecure_skip_verify(True)
     result = sms.get_filters('test', 'number', 51)
     name = result.find('filter/name')#/filter/name").text
-    print(name)
+    if name is None:
+        print("Missing name")
+        return
+    print(name.text)
 
 if __name__ == '__main__':
     main()

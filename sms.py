@@ -61,7 +61,8 @@ def set_filters_request(profile_name, filter_number, action_set):
     ET.SubElement(get_filters_element, 'profile', attrib=dict(name=profile_name))
     filter_element = ET.SubElement(get_filters_element, 'filter')
     ET.SubElement(filter_element, 'number').text = str(filter_number)
-    ET.SubElement(filter_element, 'actionset', {'name': action_set})
+    #ET.SubElement(filter_element, 'actionset', {'name': action_set})
+    ET.SubElement(filter_element, 'actionset', {'refid': '124d43ff-d62d-4764-8280-9931bf9a9049'})
     xml = ET.tostring(get_filters_element)
     return xml
 

@@ -18,13 +18,15 @@ def main():
     print(settings.sms.skip_tls_verify)
     sms = SMS(settings.sms.url, settings.sms.api_key).set_insecure_skip_verify(True)
     count_missing = 0
-    for n in range(1, 100000):
-        result = sms.get_filters('test', 'number', n)
-        name = result.find('filter/name')#/filter/name").text
-        if name is None:
-            print(result)
-            continue
-        print(name.text)
+    #for n in range(1, 100000):
+    n = 51
+    result = sms.get_filter('test', 'number', n)
+    name = result.find('filter/name')#/filter/name").text
+    if name is None:
+        #print(result)
+        #continue
+        pass
+    print(name.text)
 
 if __name__ == '__main__':
     main()

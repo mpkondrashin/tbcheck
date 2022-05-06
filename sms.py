@@ -22,16 +22,17 @@ class SMS:
         self.insecure_skip_verify = insecure_skip_verify
         return self
 
-    def get_filters(self, profile_name, name, value):
+    def get_filter(self, profile_name, name, value):
         headers = {'X-SMS-API-KEY': self.api_key}
         url = f"https://{self.url}/ipsProfileMgmt/getFilters"
         xml = get_filters_request(profile_name, name, value)
         files = {'file': ('getFilters.xml', xml)}
         result = requests.post(url, files=files, headers=headers, verify=not self.insecure_skip_verify)
-        print(result.text)
+        #print(result.text)
         return ET.fromstring(result.text)
 
-
+    def set_filter(self, name):
+        pass
 
 
         """
@@ -63,6 +64,8 @@ def get_filters_request(profile_name, name, value):
         raise RuntimeError("Unsupported filter criteria: " + name)
     get_filters_element = ET.Element("getFilters")
     ET.SubElement(get_filters_element, "profile", attrib=dict(name=profile_name))
+    filter_element = ET.SubElement(get_filters_element, "filter")
+    ET.SubElement(filter_element, name).text = str(value)
     filter_element = ET.SubElement(get_filters_element, "filter")
     ET.SubElement(filter_element, name).text = str(value)
     return ET.tostring(get_filters_element)

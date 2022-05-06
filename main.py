@@ -44,7 +44,7 @@ def main():
         if filter_name is None or action_name is None:
             #print(result)
             #continue
-            pass
+            continue
         actionset_name_element = action_name.attrib['name']
         if actionset_name_element is None:
             continue

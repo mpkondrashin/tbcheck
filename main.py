@@ -33,6 +33,9 @@ def main():
         print(action_from, actionset_name)
         if action_from == actionset_name:
             print("change to", action_to)
+        else:
+            print(action_from , "not equal to ", actionset_name)
+
 
 if __name__ == '__main__':
     main()

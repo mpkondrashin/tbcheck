@@ -11,7 +11,7 @@ class settings:
         name = 'tbcheck'
 
         action_sets = [
-            ("Block", "TBC Permit + Notify + Trace"),
+            ("Block + --", "TBC Permit + Notify + Trace"),
             ("Block + Notify", "TBC Permit + Notify + Trace"),
             ("Block + Notify + Trace", "TBC Permit + Notify + Trace"),
         ]
